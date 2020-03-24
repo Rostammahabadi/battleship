@@ -8,7 +8,7 @@ class BoardTest < Minitest::Test
 
   def test_instance_of_board
 
-    assert_instnace_of board = Board.new
+    assert_instance_of Board, board = Board.new
 
   end
 
@@ -16,7 +16,7 @@ class BoardTest < Minitest::Test
     board = Board.new
     board.cells
 
-    assert_equal Hash, board.class
+    assert_equal Hash, board.cells.class
   end
 
   def test_validating_coordinates
