@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/cell'
 require './lib/ship'
-require '.lib/board'
+require './lib/board'
 
 class BoardTest < Minitest::Test
 
@@ -25,3 +25,5 @@ class BoardTest < Minitest::Test
     assert_equal true, board.valid_coordinate?("A1")
     assert_equal true, board.valid_coordinate?("D4")
   end
+  
+end
