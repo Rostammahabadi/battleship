@@ -25,4 +25,11 @@ class Cell
     @fired_upon
   end
 
+  #use .hit to remove one point from ship health
+  #chnage @fired_upon to true
+  def fire_upon
+    @ship.hit
+    @fired_upon = true
+  end
+
 end
