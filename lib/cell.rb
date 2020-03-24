@@ -8,4 +8,10 @@ class Cell
     @empty = true
     @fired_upon = false
   end
+
+  #returns empty status
+  def empty?
+    @empty
+  end
+    
 end
