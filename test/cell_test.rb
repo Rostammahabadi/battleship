@@ -51,4 +51,23 @@ class ShipTest < Minitest::Test
      assert_equal true, cell.fired_upon?
    end
 
+   def test_render
+     #initialize instances
+     cell1 = Cell.new("B4")
+     cell2 = Cell.new("D1")
+     cruiser = Ship.new("Cruiser", 3)
+     #test empty render
+     assert_equal ".", cell1.render
+     cell1.fire_upon
+     assert_equal "M", cell1.render
+     #test render with placed ship
+     cell2.place_ship(cruiser)
+     assert_equal ".", cell2.render
+     cell2.fire_upon
+     assert_equal "H", cell2.render
+     cruiser.hit
+     cruiser.hit
+     assert_equal "X", cell2.render
+   end
+
 end
