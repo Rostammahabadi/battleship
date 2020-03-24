@@ -13,5 +13,11 @@ class Cell
   def empty?
     @empty
   end
-    
+
+  #stores placed ship in @ship, change @empty to false
+  def place_ship(ship_being_placed)
+    @ship = ship_being_placed
+    @empty = false
+  end
+  
 end
