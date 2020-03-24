@@ -8,4 +8,10 @@ class Ship
     @health = length
   end
 
+  #remove 1 point from health
+  def hit
+    @health -= 1
+  end
+
+
 end
