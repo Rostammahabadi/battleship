@@ -1,3 +1,5 @@
+require './lib/ship'
+
 class Cell
   attr_reader :coordinate, :ship
 
@@ -28,8 +30,24 @@ class Cell
   #use .hit to remove one point from ship health
   #chnage @fired_upon to true
   def fire_upon
-    @ship.hit
-    @fired_upon = true
+    if @empty == false
+      @ship.hit
+      @fired_upon = true
+    else
+      @fired_upon = true
+    end
   end
+
+  def render
+    if fired_upon? == false
+      return '.'
+    elsif fired_upon? == true && @empty == true
+      return 'M'
+    elsif fired_upon? == true && @empty == false && @ship.sunk? == false
+      return "H"
+    elsif fired_upon? == true && @ship.sunk? == true
+    return "X"
+  end
+end
 
 end
