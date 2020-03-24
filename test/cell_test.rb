@@ -11,12 +11,6 @@ class ShipTest < Minitest::Test
     assert_equal "B4", cell.coordinate
   end
 
-  def test_coordinate_return
-    cell = Cell.new("B4")
-
-    assert_equal "B4", cell.coordinate
-  end
-
   def test_there_is_no_ship
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
