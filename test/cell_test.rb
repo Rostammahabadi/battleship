@@ -15,7 +15,7 @@ class ShipTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
 
-    assert_equal nil, cell.ship
+    assert_nil cell.ship
   end
 
   def test_the_cell_is_empty
