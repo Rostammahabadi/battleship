@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/cell'
 require './lib/ship'
 require './lib/board'
+require 'pry'
 
 class BoardTest < Minitest::Test
 
@@ -52,6 +53,25 @@ class BoardTest < Minitest::Test
 
     assert_equal false, board.valid_placement?(cruiser, ["A1", "B2", "C3"])
     assert_equal false, board.valid_placement?(submarine, ["C2", "D3"])
+  end
+
+  def test_placing_ships
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
+    assert_equal true, cell_3.ship == cell_2.ship
+  end
+
+  def test_overlapping_ships
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    board.place(cruiser, ["A1", "A2", "A3"])
+    submarine = Ship.new("Submarine", 2)
+
+    refute board.valid_placement?(submarine, ["A1", "B1"])
   end
 
 end

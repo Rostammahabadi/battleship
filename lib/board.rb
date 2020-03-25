@@ -56,30 +56,43 @@ class Board
     if coordinates_array.length != ship.length
       false
     else
-      coordinates_array.each_cons(2) do |coord1, coord2|
-        #enters here if coord letters are the same
-        if coord1[0] == coord2[0] && situation != "different"
-          situation = "same"
-          #checks numbers sequential
-          if coord1[1].to_i != (coord2[1].to_i-1)
+      if coordinates_array.all? {|coor| @cells[coor].empty?} == true
+        coordinates_array.each_cons(2) do |coord1, coord2|
+          #enters here if coord letters are the same
+          if coord1[0] == coord2[0] && situation != "different"
+            situation = "same"
+            #checks numbers sequential
+            if coord1[1].to_i != (coord2[1].to_i-1)
+              valid = false
+              break
+            end
+          #enters here if letters are sequential
+          elsif (coord1[0].ord == (coord2[0].ord - 1)) && (situation != "same")
+            situation = "different"
+            #checks numbers the same
+            if coord1[1] != coord2[1]
+              valid = false
+              break
+            end
+          else
             valid = false
             break
           end
-        #enters here if letters are sequential
-        elsif (coord1[0].ord == (coord2[0].ord - 1)) && (situation != "same")
-          situation = "different"
-          #checks numbers the same
-          if coord1[1] != coord2[1]
-            valid = false
-            break
-          end
-        else
-          valid = false
-          break
+        end
+        #returns valid
+        valid
+      end
+    end
+    end
+
+  def place(ship, location)
+    location.each do |loc|
+      @cells.each do |coordinate, cell|
+        if loc == coordinate && cell.empty == true
+          cell.place_ship(ship)
         end
       end
-      #returns valid
-      valid
     end
+
   end
 end
