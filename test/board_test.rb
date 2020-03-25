@@ -74,4 +74,10 @@ class BoardTest < Minitest::Test
     refute board.valid_placement?(submarine, ["A1", "B1"])
   end
 
+  def test_rendering_hidden_ship
+    board.place(cruiser, ["A1", "A2", "A3"])
+    expected_return = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+    assert_equal expected_return, board.render
+  end
+
 end
