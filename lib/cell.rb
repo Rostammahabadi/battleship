@@ -39,7 +39,7 @@ class Cell
   end
 
   def render(show = true)
-    if show == true
+    if show
       if fired_upon? == false && @empty == true
         return '.'
       elsif fired_upon? == false && @empty == false
