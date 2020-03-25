@@ -38,7 +38,7 @@ class Cell
     end
   end
 
-  def render
+  def render(argument = true)
     if fired_upon? == false
       return '.'
     elsif fired_upon? == true && @empty == true
