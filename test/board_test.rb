@@ -75,13 +75,16 @@ class BoardTest < Minitest::Test
   end
 
   def test_rendering_hidden_ship
-    board.place(cruiser, ["A1", "A2", "A3"])
-    expected_return = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
-    assert_equal expected_return, board.render
+      board = Board.new()
+      cruiser = Ship.new("Cruiser", 3)
+      board.place(cruiser, ["A1", "A2", "A3"])
+      board.render
+      expected_return = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+      assert_equal expected_return, board.render
   end
-
-
   def test_rendering_visable_ship
+    board = Board.new()
+    cruiser = Ship.new("Cruiser", 3)
     board.place(cruiser, ["A1", "A2", "A3"])
     expected_return = "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n"
     assert_equal expected_return, board.render(true)
