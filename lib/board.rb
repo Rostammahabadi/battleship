@@ -53,7 +53,7 @@ class Board
     #tracks if coordinate is valid or not
     valid = true
     #checks ship length vs num coordinates
-    if coordinates_array.count != ship.length
+    if coordinates_array.length != ship.length
       false
     else
       coordinates_array.each_cons(2) do |coord1, coord2|
