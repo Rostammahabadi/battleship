@@ -38,10 +38,12 @@ class Cell
     end
   end
 
-  def render(argument = true)
-    if argument == true
-      if fired_upon? == false
+  def render(show = true)
+    if show == true
+      if fired_upon? == false && @empty == true
         return '.'
+      elsif fired_upon? == false && @empty == false
+        return 'S'
       elsif fired_upon? == true && @empty == true
         return 'M'
       elsif fired_upon? == true && @empty == false && @ship.sunk? == false
