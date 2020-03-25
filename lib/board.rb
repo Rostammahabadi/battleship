@@ -82,4 +82,16 @@ class Board
       valid
     end
   end
+
+  def place(ship, location)
+    location.each do |loc|
+      @cells.each do |coordinate, cell|
+        if loc == coordinate
+          cell.empty = false
+          cell.ship = ship
+        end
+      end
+    end
+
+  end
 end
