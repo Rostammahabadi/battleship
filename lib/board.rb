@@ -27,11 +27,6 @@ class Board
       "D1"=> cell13, "D2"=> cell14, "D3"=> cell15, "D4"=> cell16
     }
 
-    @board_numerical = { "A1"=> 1, "A2"=> 2, "A3"=> 3, "A4"=> 4,
-    "B1"=> 5, "B2"=> 6, "B3"=> 7, "B4"=> 8,
-    "C1"=> 9, "C2"=> 10, "C3"=> 11, "C4"=> 12,
-    "D1"=> 13, "D2"=> 14, "D3"=> 15, "D4"=> 16}
-
   end
 
   #check passed coordinate (key) exists in @cells (hash)
