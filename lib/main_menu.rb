@@ -35,16 +35,17 @@ class MainMenu
         p "Enter the squares for the Submarine (2 spaces)"
         puts ">"
         submarine = gets.chomp!
-        if submarine.valid_placement?
-          submarine_ship = Ship.new("Submarine", 2)
-          submarine_array = []
-          submarine_array << submarine[0..1]
-          submarine_array << submarine[3..4]
-          submarine_array << submarine[6..7]
+        submarine_ship = Ship.new("Submarine", 2)
+        submarine_array = []
+        submarine_array << submarine[0..1]
+        submarine_array << submarine[3..4]
+        submarine_array << submarine[6..7]
+
+        if user_board.valid_placement?(submarine_ship, submarine_array)
 
           user_board.place(submarine_ship, submarine_array)
         end
-        
+
     end
 
     if enter == "q"
