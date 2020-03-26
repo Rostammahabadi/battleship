@@ -36,6 +36,7 @@ class Cell
   end
 
   def render(show = true)
+    return '.' if show == false
     if show
       if fired_upon? == false && @empty == true
         return '.'
@@ -48,8 +49,6 @@ class Cell
       elsif fired_upon? == true && @ship.sunk? == true
       return "X"
     end
-  else
-    return '.'
   end
 end
 
