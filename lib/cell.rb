@@ -30,12 +30,9 @@ class Cell
   #use .hit to remove one point from ship health
   #chnage @fired_upon to true
   def fire_upon
-    if @empty == false
-      @ship.hit
-      @fired_upon = true
-    else
-      @fired_upon = true
-    end
+    @ship.hit if @empty == false
+    @fired_upon = true if @empty == false
+    @fired_upon = true if @empty == true
   end
 
   def render(show = true)
