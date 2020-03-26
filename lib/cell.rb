@@ -37,18 +37,16 @@ class Cell
 
   def render(show = true)
     return '.' if show == false
-    if show
-      if fired_upon? == false && @empty == true
-        return '.'
-      elsif fired_upon? == false && @empty == false
-        return 'S'
-      elsif fired_upon? == true && @empty == true
-        return 'M'
-      elsif fired_upon? == true && @empty == false && @ship.sunk? == false
-        return "H"
-      elsif fired_upon? == true && @ship.sunk? == true
-      return "X"
-    end
+    if fired_upon? == false && @empty == true
+      return '.'
+    elsif fired_upon? == false && @empty == false
+      return 'S'
+    elsif fired_upon? == true && @empty == true
+      return 'M'
+    elsif fired_upon? == true && @empty == false && @ship.sunk? == false
+      return "H"
+    elsif fired_upon? == true && @ship.sunk? == true
+    return "X"
   end
 end
 
