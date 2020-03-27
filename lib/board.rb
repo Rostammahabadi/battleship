@@ -76,8 +76,11 @@ class Board
         end
         #returns valid
         valid
+      else
+        valid = false
       end
     end
+
     end
 
   def place(ship, location)
@@ -92,7 +95,7 @@ class Board
   end
 
   def render(show = false)
-    p "  1 2 3 4 \nA #{cells["A1"].render(show)} #{cells["A2"].render(show)} #{cells["A3"].render(show)} #{cells["A4"].render(show)} \nB #{cells["B1"].render(show)} #{cells["B2"].render(show)} #{cells["B3"].render(show)} #{cells["B4"].render(show)} \nC #{cells["C1"].render(show)} #{cells["C2"].render(show)} #{cells["C3"].render(show)} #{cells["C4"].render(show)} \nD #{cells["D1"].render(show)} #{cells["D2"].render(show)} #{cells["D3"].render(show)} #{cells["D4"].render(show)} \n"
+    puts "  1 2 3 4 \nA #{cells["A1"].render(show)} #{cells["A2"].render(show)} #{cells["A3"].render(show)} #{cells["A4"].render(show)} \nB #{cells["B1"].render(show)} #{cells["B2"].render(show)} #{cells["B3"].render(show)} #{cells["B4"].render(show)} \nC #{cells["C1"].render(show)} #{cells["C2"].render(show)} #{cells["C3"].render(show)} #{cells["C4"].render(show)} \nD #{cells["D1"].render(show)} #{cells["D2"].render(show)} #{cells["D3"].render(show)} #{cells["D4"].render(show)} \n"
 end
 
 end
