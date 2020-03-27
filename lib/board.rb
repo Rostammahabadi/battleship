@@ -1,5 +1,6 @@
 class Board
   attr_reader :cells
+  attr_accessor :cells_containing_ships
 
   def initialize
 
@@ -26,6 +27,8 @@ class Board
       "C1"=> cell9, "C2"=> cell10, "C3"=> cell11, "C4"=> cell12,
       "D1"=> cell13, "D2"=> cell14, "D3"=> cell15, "D4"=> cell16
     }
+
+    @cells_containing_ships = []
 
   end
 
