@@ -31,7 +31,7 @@ class Main
       setup_menu
       @turn = Turn.new(@user_board, @computer_board)
       while @game_over == false do
-        @turn.play_turn(@turn.turn_type)
+        @turn.game_turn
         if @turn.final_turn? == true
           @game_over = true
         end
