@@ -79,8 +79,11 @@ class Board
         end
         #returns valid
         valid
+      else
+        valid = false
       end
     end
+
     end
 
   def place(ship, location)

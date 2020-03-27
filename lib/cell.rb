@@ -30,29 +30,23 @@ class Cell
   #use .hit to remove one point from ship health
   #chnage @fired_upon to true
   def fire_upon
-    if @empty == false
-      @ship.hit
-      @fired_upon = true
-    else
-      @fired_upon = true
-    end
+    @ship.hit if @empty == false
+    @fired_upon = true if @empty == false
+    @fired_upon = true if @empty == true
   end
 
   def render(show = true)
-    if show
-      if fired_upon? == false && @empty == true
-        return '.'
-      elsif fired_upon? == false && @empty == false
-        return 'S'
-      elsif fired_upon? == true && @empty == true
-        return 'M'
-      elsif fired_upon? == true && @empty == false && @ship.sunk? == false
-        return "H"
-      elsif fired_upon? == true && @ship.sunk? == true
-      return "X"
-    end
-  else
-    return '.'
+    return '.' if show == false
+    if fired_upon? == false && @empty == true
+      return '.'
+    elsif fired_upon? == false && @empty == false
+      return 'S'
+    elsif fired_upon? == true && @empty == true
+      return 'M'
+    elsif fired_upon? == true && @empty == false && @ship.sunk? == false
+      return "H"
+    elsif fired_upon? == true && @ship.sunk? == true
+    return "X"
   end
 end
 
