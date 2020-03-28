@@ -7,11 +7,6 @@ class Verify
     @valid_coordinates = @board.cells.map{|cell| cell[0]}
   end#initialize
 
-  #validate given argument is a valide cell cordinate
-  def coordinate_input(coordinate)
-    @valid_coordinates.any?{|coord| coord == coordinate}
-  end#coordinate_input
-
   #validate menu input is 'P' or 'Q'
   def menu_input(input)
     if input.upcase == "P" || input.upcase == "Q"
@@ -20,6 +15,11 @@ class Verify
       false
     end
   end#menu_input
+
+  #validate given argument is a valide cell cordinate
+  def coordinate_input(coordinate)
+    @valid_coordinates.any?{|coord| coord == coordinate}
+  end#coordinate_input
 
   def cruiser_placement_coordinates(inputted_coordinates)
     if inputted_coordinates.length == 3
