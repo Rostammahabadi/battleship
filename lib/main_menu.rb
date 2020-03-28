@@ -59,9 +59,10 @@ class MainMenu
     submarine_array << submarine[0..1]
     submarine_array << submarine[3..4]
 
-    while @user_board.valid_placement?(@submarine_ship, submarine_array) == false
-      puts "Those are invalid coordinates. Please try again: "
-      puts ">"
+    #while user input coordinates are invalid, get new user input
+    while @verify.submarine_placement_coordinates(submarine_array) == false
+      p "Those are invalid coordinates. Please try again: "
+      p ">"
       submarine = gets.chomp!
       submarine_array = []
       submarine_array << submarine[0..1]
