@@ -38,15 +38,16 @@ class MainMenu
     cruiser_array << cruiser_coords[0..1]
     cruiser_array << cruiser_coords[3..4]
     cruiser_array << cruiser_coords[6..7]
-    while @user_board.valid_placement?(@cruiser_ship, cruiser_array) == false
-      p "Those are invalid coordinates. Please try again: "
-      p ">"
-      cruiser = gets.chomp!
-      cruiser_array = []
-      cruiser_array << cruiser[0..1]
-      cruiser_array << cruiser[3..4]
-      cruiser_array << cruiser[6..7]
-    end
+    #while user input coordinates are invalid, get new user input
+      while @verify.cruiser_placement_coordinates(cruiser_array) == false
+        p "Those are invalid coordinates. Please try again: "
+        p ">"
+        cruiser = gets.chomp!
+        cruiser_array = []
+        cruiser_array << cruiser[0..1]
+        cruiser_array << cruiser[3..4]
+        cruiser_array << cruiser[6..7]
+      end
     @user_board.place(@cruiser_ship, cruiser_array)
     @user_board.cells_containing_ships << cruiser_array
 
