@@ -2,12 +2,14 @@ require './lib/cell'
 require './lib/ship'
 require './lib/board'
 require './lib/turn'
+require './lib/verify'
 require 'pry'
 
 class MainMenu
 
   def initialize()
     @game_over = false
+    @verify = Verify.new
     @user_board = Board.new
     @computer_board = Board.new
     @cruiser_ship = Ship.new("Cruiser",3)
@@ -73,6 +75,13 @@ class MainMenu
     p "Welcome to BATTLESHIP"
     p "Enter p to play. Enter q to quit."
     user_input = gets.chomp!
+
+    #while menu intro input is invalid, get new input
+    while @verify.menu_input(user_input) == false
+      puts "invalid input"
+      puts "Enter p to play. Enter q to quit."
+      user_input = gets.chomp
+    end
 
     #if input is P, setup players, loop turn until someone looses
     if user_input.upcase == "P"
