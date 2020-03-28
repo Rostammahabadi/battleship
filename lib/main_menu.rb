@@ -1,78 +1,95 @@
 require './lib/cell'
 require './lib/ship'
 require './lib/board'
+require './lib/turn'
 require 'pry'
 
 class MainMenu
 
   def initialize()
-    computer_board = Board.new
-    computer_cruiser = Ship.new("Cruiser",3)
-    computer_submarine = Ship.new("Submarine", 2)
-    computer_board.place(computer_cruiser, ["A1","A2","A3"])
-    computer_board.place(computer_submarine, ["C1","C2"])
+    @game_over = false
     @user_board = Board.new
-  end
+    @computer_board = Board.new
+    @cruiser_ship = Ship.new("Cruiser",3)
+    @submarine_ship = Ship.new("Submarine", 2)
+  end#initialize
 
-  def start_game
-    p "Welcome to BATTLESHIP"
-    p "Enter p to play. Enter q to quit."
-    enter = gets.chomp!
-    enter
+  #setup computer with hardcoded ship coordinates
+  def setup_computer
+    @computer_board.place(@cruiser_ship, ["A1","A2","A3"])
+    @computer_board.place(@submarine_ship, ["C1","C2"])
+    @computer_board.cells_containing_ships << ["A1","A2","A3","C1","C2"]
+    @computer_board.cells_containing_ships = @computer_board.cells_containing_ships.flatten
+  end#setup_computer
 
-    if enter == "p"
+  def setup_user
+    puts "I have laid out my ships on the grid."
+    puts "You now need to lay out your own two ships."
+    puts "The Cruiser is three units long and the Submarine is two units long"
+    puts "#{@user_board.render(true)}"
 
-    # def player_ship_placement
-      puts "I have laid out my ships on the grid."
-      puts "You now need to lay out your own two ships."
-      puts "The Cruiser is three units long and the Submarine is two units long"
-      puts "#{@user_board.render(true)}"
-
-      p "Enter the squares for the Cruiser (3 spaces)"
-      puts ">"
+    #take and store user input coordinates for cruiser
+    p "Enter the squares for the Cruiser (3 spaces)"
+    puts ">"
+    cruiser_coords = gets.chomp!
+    cruiser_array = []
+    cruiser_array << cruiser_coords[0..1]
+    cruiser_array << cruiser_coords[3..4]
+    cruiser_array << cruiser_coords[6..7]
+    while @user_board.valid_placement?(@cruiser_ship, cruiser_array) == false
+      p "Those are invalid coordinates. Please try again: "
+      p ">"
       cruiser = gets.chomp!
-
-      cruiser_ship = Ship.new("Cruiser", 3)
       cruiser_array = []
       cruiser_array << cruiser[0..1]
       cruiser_array << cruiser[3..4]
       cruiser_array << cruiser[6..7]
-      while @user_board.valid_placement?(cruiser_ship, cruiser_array) == false
-        p "Those are invalid coordinates. Please try again: "
-        p ">"
-        cruiser = gets.chomp!
-        cruiser_array = []
-        cruiser_array << cruiser[0..1]
-        cruiser_array << cruiser[3..4]
-        cruiser_array << cruiser[6..7]
-      end
-      @user_board.place(cruiser_ship, cruiser_array)
     end
-      p "Enter the squares for the Submarine (2 spaces)"
+    @user_board.place(@cruiser_ship, cruiser_array)
+    @user_board.cells_containing_ships << cruiser_array
+
+    #take and store user input coordinates for submarine
+    p "Enter the squares for the Submarine (2 spaces)"
+    puts ">"
+    submarine = gets.chomp!
+    submarine_array = []
+    submarine_array << submarine[0..1]
+    submarine_array << submarine[3..4]
+
+    while @user_board.valid_placement?(@submarine_ship, submarine_array) == false
+      puts "Those are invalid coordinates. Please try again: "
       puts ">"
       submarine = gets.chomp!
-
-      submarine_ship = Ship.new("Submarine", 2)
       submarine_array = []
       submarine_array << submarine[0..1]
       submarine_array << submarine[3..4]
-
-      while @user_board.valid_placement?(submarine_ship, submarine_array) == false
-        puts "Those are invalid coordinates. Please try again: "
-        puts ">"
-        submarine = gets.chomp!
-        submarine_array = []
-        submarine_array << submarine[0..1]
-        submarine_array << submarine[3..4]
-      end
-        @user_board.place(submarine_ship, submarine_array)
-        binding.pry
-      end
-
     end
+    @user_board.place(@submarine_ship, submarine_array)
+    @user_board.cells_containing_ships << submarine_array
+    @user_board.cells_containing_ships = @user_board.cells_containing_ships.flatten
+  end#setup_user
 
-  #end
+  def start_menu
+    p "Welcome to BATTLESHIP"
+    p "Enter p to play. Enter q to quit."
+    user_input = gets.chomp!
 
+    #if input is P, setup players, loop turn until someone looses
+    if user_input.upcase == "P"
+      setup_computer
+      setup_user
 
-first_game = MainMenu.new
-first_game.start_game
+      @turn = Turn.new(@user_board, @computer_board)
+
+      while @game_over == false do
+        @turn.game_turn
+        if @turn.final_turn? == true
+          @game_over = true
+        end
+      end
+      p "END OF GAME MESSAGE"
+    else
+      p  "USER PRESSED Q"
+    end
+  end#start_menu
+end#main_menu
