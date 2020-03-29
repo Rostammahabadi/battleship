@@ -12,14 +12,16 @@ class MainMenu
     @verify = Verify.new
     @user_board = Board.new
     @computer_board = Board.new
-    @cruiser_ship = Ship.new("Cruiser",3)
-    @submarine_ship = Ship.new("Submarine", 2)
+    @user_cruiser_ship = Ship.new("Cruiser",3)
+    @user_submarine_ship = Ship.new("Submarine", 2)
+    @computer_cruiser_ship = Ship.new("Cruiser",3)
+    @computer_submarine_ship = Ship.new("Submarine", 2)
   end#initialize
 
   #setup computer with hardcoded ship coordinates
   def setup_computer
-    @computer_board.place(@cruiser_ship, ["A1","A2","A3"])
-    @computer_board.place(@submarine_ship, ["C1","C2"])
+    @computer_board.place(@computer_cruiser_ship, ["A1","A2","A3"])
+    @computer_board.place(@computer_submarine_ship, ["C1","C2"])
     @computer_board.cells_containing_ships << ["A1","A2","A3","C1","C2"]
     @computer_board.cells_containing_ships = @computer_board.cells_containing_ships.flatten
   end#setup_computer
@@ -48,7 +50,7 @@ class MainMenu
         cruiser_array << cruiser[3..4]
         cruiser_array << cruiser[6..7]
       end
-    @user_board.place(@cruiser_ship, cruiser_array)
+    @user_board.place(@user_cruiser_ship, cruiser_array)
     @user_board.cells_containing_ships << cruiser_array
 
     #take and store user input coordinates for submarine
@@ -68,7 +70,7 @@ class MainMenu
       submarine_array << submarine[0..1]
       submarine_array << submarine[3..4]
     end
-    @user_board.place(@submarine_ship, submarine_array)
+    @user_board.place(@user_submarine_ship, submarine_array)
     @user_board.cells_containing_ships << submarine_array
     @user_board.cells_containing_ships = @user_board.cells_containing_ships.flatten
   end#setup_user
