@@ -20,8 +20,6 @@ class Verify
   def cruiser_placement_coordinates(inputted_coordinates)
     if inputted_coordinates.length == 3
       inputted_coordinates.all?{|coord| coordinate_input(coord) == true} && @board.valid_placement?(@cruiser, inputted_coordinates) == true
-    else
-      false
     end
   end
 
