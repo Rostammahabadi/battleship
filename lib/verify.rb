@@ -28,8 +28,6 @@ class Verify
   def submarine_placement_coordinates(inputted_coordinates)
     if inputted_coordinates.length == 2
       inputted_coordinates.all?{|coord| coordinate_input(coord) == true} && @board.valid_placement?(@submarine, inputted_coordinates) == true
-    else
-      false
     end
   end
 
