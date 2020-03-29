@@ -96,6 +96,7 @@ class MainMenu
         @turn.game_turn
         if @turn.final_turn? == true
           @game_over = true
+          puts "GAME OVER"
         end
       end
       p "END OF GAME MESSAGE"
