@@ -31,21 +31,23 @@ class Cell
   #chnage @fired_upon to true
   def fire_upon
     @ship.hit if @empty == false
-    @fired_upon = true if @empty == false
-    @fired_upon = true if @empty == true
+    @fired_upon = true
   end
 
   def render(show = true)
-    return '.' if show == false
     if fired_upon? == false && @empty == true
       return '.'
-    elsif fired_upon? == false && @empty == false
+    elsif fired_upon? == false && @empty == false && show == true
       return 'S'
+    elsif fired_upon? == false && @empty == false && show == false
+      return '.'
     elsif fired_upon? == true && @empty == true
       return 'M'
     elsif fired_upon? == true && @empty == false && @ship.sunk? == false
+      binding.pry
       return "H"
     elsif fired_upon? == true && @ship.sunk? == true
+      binding.pry
     return "X"
   end
 end
