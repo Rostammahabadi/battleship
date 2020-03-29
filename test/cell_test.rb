@@ -76,7 +76,6 @@ class ShipTest < Minitest::Test
      #test sinking scenareo
      cell2.fire_upon
      assert_equal "H", cell2.render
-     assert_equal ".", cell2.render(false)
      cell3.fire_upon
      assert_equal "H", cell2.render
      assert_equal "H", cell3.render
