@@ -45,7 +45,7 @@ class Cell
       return 'M'
     elsif fired_upon? == true && @empty == false && @ship.sunk? == false
       return "H"
-    elsif fired_upon? == true && @ship.sunk? == true
+    elsif fired_upon? == true && @empty == false && @ship.sunk? == true
     return "X"
   end
 end
