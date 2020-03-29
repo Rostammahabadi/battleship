@@ -15,7 +15,7 @@ class Turn
     puts "==============PLAYER BOARD=============="
     puts @human_board.render(true)
     puts "Which coordinate would you like to strike?"
-    strike_coordinate = gets.chomp
+    strike_coordinate = gets.chomp!
 
     while @verify.coordinate_input(strike_coordinate) == false
       puts "invalid input"
