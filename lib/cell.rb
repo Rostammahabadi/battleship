@@ -44,10 +44,8 @@ class Cell
     elsif fired_upon? == true && @empty == true
       return 'M'
     elsif fired_upon? == true && @empty == false && @ship.sunk? == false
-      binding.pry
       return "H"
     elsif fired_upon? == true && @ship.sunk? == true
-      binding.pry
     return "X"
   end
 end
