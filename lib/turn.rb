@@ -1,4 +1,3 @@
-
 class Turn
   attr_reader :turn_type
 
@@ -7,8 +6,8 @@ class Turn
     @human_board = human_board
     @ai_board = ai_board
     @ai_fire_order = @ai_board.cells.map {|cell| cell[0]}.shuffle
+    @verify = Verify.new
   end
-
 
   def game_turn
     puts "=============COMPUTER BOARD============="
@@ -16,8 +15,15 @@ class Turn
     puts "==============PLAYER BOARD=============="
     puts @human_board.render(true)
     puts "Which coordinate would you like to strike?"
-    strike_coordinates = gets.chomp
-    @ai_board.cells[strike_coordinates].fire_upon
+    strike_coordinate = gets.chomp
+
+    while @verify.coordinate_input(strike_coordinate) == false
+      puts "invalid input"
+      puts "Which coordinate would you like to strike?"
+      strike_coordinate = gets.chomp
+    end
+
+    @ai_board.cells[strike_coordinate].fire_upon
     @human_board.cells[@ai_fire_order[@turn_number]].fire_upon
     @turn_number += 1
   end
