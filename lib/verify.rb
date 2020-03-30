@@ -31,4 +31,8 @@ class Verify
     end
   end
 
+  def verify_no_overlap(cruiser_coords, submarine_coords)
+    cruiser_coords.any?{|coord| coord == submarine_coords[0] || coord == submarine_coords[1]}
+  end
+
 end#Verify
