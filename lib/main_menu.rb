@@ -96,12 +96,14 @@ class MainMenu
 
       while @game_over == false do
         @turn.game_turn
-        if @turn.final_turn? == true
+        if @turn.final_turn? == 0
           @game_over = true
-          puts "GAME OVER"
+          puts "I Win!"
+        elsif @turn.final_turn? == 1
+          @game_over = true
+          puts "You Win!"
         end
       end
-      p "END OF GAME MESSAGE"
     else
       p  "USER PRESSED Q"
     end
