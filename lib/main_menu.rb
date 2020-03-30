@@ -62,7 +62,7 @@ class MainMenu
     submarine_array << submarine[3..4]
 
     #while user input coordinates are invalid, get new user input
-    while @verify.submarine_placement_coordinates(submarine_array) == false
+    while @verify.submarine_placement_coordinates(submarine_array) == false || @verify.verify_no_overlap(cruiser_array, submarine_array) == true
       p "Those are invalid coordinates. Please try again: "
       p ">"
       submarine = gets.chomp!
