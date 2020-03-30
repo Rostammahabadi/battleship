@@ -9,11 +9,7 @@ class Verify
 
   #validate menu input is 'P' or 'Q'
   def menu_input(input)
-    if input.upcase == "P" || input.upcase == "Q"
-      true
-    else
-      false
-    end
+    input.upcase == "P" || input.upcase == "Q"
   end#menu_input
 
   #validate given argument is a valide cell cordinate
@@ -24,8 +20,6 @@ class Verify
   def cruiser_placement_coordinates(inputted_coordinates)
     if inputted_coordinates.length == 3
       inputted_coordinates.all?{|coord| coordinate_input(coord) == true} && @board.valid_placement?(@cruiser, inputted_coordinates) == true
-    else
-      false
     end
   end
 
@@ -34,8 +28,6 @@ class Verify
   def submarine_placement_coordinates(inputted_coordinates)
     if inputted_coordinates.length == 2
       inputted_coordinates.all?{|coord| coordinate_input(coord) == true} && @board.valid_placement?(@submarine, inputted_coordinates) == true
-    else
-      false
     end
   end
 
