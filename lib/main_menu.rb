@@ -7,6 +7,7 @@ require 'pry'
 
 class MainMenu
 
+
   def initialize()
     @game_over = false
     @verify = Verify.new
