@@ -22,7 +22,7 @@ class Turn
       puts "Which coordinate would you like to strike?"
       strike_coordinate = gets.chomp
     end
-
+    # verify the user hasn't entered that cell previously
     while @verify.verify_no_repeated_coordinate(@ai_board.cells[strike_coordinate]) == false
       puts "You already struck that cell"
       puts "Choose another coordinate"
