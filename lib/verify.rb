@@ -1,5 +1,6 @@
 class Verify
 
+
   def initialize
     @board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
@@ -33,6 +34,10 @@ class Verify
 
   def verify_no_overlap(cruiser_coords, submarine_coords)
     cruiser_coords.any?{|coord| coord == submarine_coords[0] || coord == submarine_coords[1]}
+  end
+  # validate the user hasn't fired upon the cell previously
+  def verify_no_repeated_coordinate(inputted_cell)
+    inputted_cell.fired_upon? == false
   end
 
 end#Verify

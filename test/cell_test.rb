@@ -83,7 +83,22 @@ class ShipTest < Minitest::Test
      assert_equal "X", cell2.render
      assert_equal "X", cell3.render
      assert_equal "X", cell4.render
-     assert_equal ".", cell4.render(false)
    end
+
+   def test_hit_or_miss
+     cell1 = Cell.new("A4")
+     cell2 = Cell.new("B4")
+     cell3 = Cell.new("C4")
+     cell4 = Cell.new("D4")
+     cruiser = Ship.new("Cruiser", 3)
+     cell2.place_ship(cruiser)
+     cell3.place_ship(cruiser)
+     cell4.place_ship(cruiser)
+     cell2.fire_upon
+     assert_equal "hit.", cell2.hit_or_miss
+     cell1.fire_upon
+     assert_equal "miss.", cell1.hit_or_miss
+   end
+
 
 end
