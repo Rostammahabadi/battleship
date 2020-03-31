@@ -49,5 +49,11 @@ class Cell
     return "X"
   end
 end
-
+  def hit_or_miss
+    if @empty == false && @fired_upon == true
+      "hit."
+    elsif @empty == true && @fired_upon == true
+      "miss."
+  end
+end
 end
