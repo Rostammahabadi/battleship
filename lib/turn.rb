@@ -1,12 +1,12 @@
 class Turn
-  attr_reader :turn_type
+  # attr_reader :turn_type
 
   def initialize(human_board, ai_board)
     @turn_number = 0
-    @human_board = human_board
-    @ai_board = ai_board
-    @ai_fire_order = @ai_board.cells.map {|cell| cell[0]}.shuffle
     @verify = Verify.new
+    @ai_board = ai_board
+    @human_board = human_board
+    @ai_fire_order = @ai_board.cells.map {|cell| cell[0]}.shuffle
   end
 
   def game_turn
@@ -25,6 +25,8 @@ class Turn
 
     @ai_board.cells[strike_coordinate].fire_upon
     @human_board.cells[@ai_fire_order[@turn_number]].fire_upon
+    p "Your shot on #{strike_coordinate} was a #{@ai_board.cells[strike_coordinate].hit_or_miss}"
+    p "My shot on #{@ai_fire_order[@turn_number]} was a #{@human_board.cells[@ai_fire_order[@turn_number]].hit_or_miss}"
     @turn_number += 1
   end
 
@@ -36,7 +38,7 @@ class Turn
   def ai_lost?
     ai_ship_cells = @ai_board.cells_containing_ships.map {|key| @ai_board.cells[key].fired_upon?}
   end
-
+  # Returns integer to display winner in main_menu.rb
   def final_turn?
     human_lost?
     ai_lost?
