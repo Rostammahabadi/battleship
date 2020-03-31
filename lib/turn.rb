@@ -1,5 +1,5 @@
 class Turn
-  # attr_reader :turn_type
+
 
   def initialize(human_board, ai_board)
     @turn_number = 0
@@ -22,6 +22,13 @@ class Turn
       puts "Which coordinate would you like to strike?"
       strike_coordinate = gets.chomp
     end
+
+    while @verify.verify_no_repeated_coordinate(@ai_board.cells[strike_coordinate]) == false
+      puts "You already struck that cell"
+      puts "Choose another coordinate"
+      strike_coordinate = gets.chomp
+    end
+
 
     @ai_board.cells[strike_coordinate].fire_upon
     @human_board.cells[@ai_fire_order[@turn_number]].fire_upon
