@@ -45,7 +45,6 @@ class Verify
   end
   # validate the user hasn't fired upon the cell previously
   def verify_no_repeated_coordinate(inputted_cell)
-    binding.pry
     inputted_cell.fired_upon? == false
   end
 
