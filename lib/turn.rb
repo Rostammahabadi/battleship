@@ -1,6 +1,5 @@
 class Turn
 
-  attr_reader :render_board
 
   def initialize(human_board, ai_board)
     @turn_number = 0
@@ -17,26 +16,29 @@ class Turn
     puts @human_board.render(true)
   end
 
-  def game_turn
+  def prompt_user_for_input
     puts "Which coordinate would you like to strike?"
-    strike_coordinate = gets.chomp!
+    @strike_coordinate = gets.chomp!
 
-    while @verify.coordinate_input(strike_coordinate) == false
+    while @verify.coordinate_input(@strike_coordinate) == false
       puts "invalid input"
       puts "Which coordinate would you like to strike?"
-      strike_coordinate = gets.chomp
+      @strike_coordinate = gets.chomp
     end
     # verify the user hasn't entered that cell previously
-    while @verify.verify_no_repeated_coordinate(@ai_board.cells[strike_coordinate]) == false
+    while @verify.verify_no_repeated_coordinate(@ai_board.cells[@strike_coordinate]) == false
       puts "You already struck that cell"
       puts "Choose another coordinate"
-      strike_coordinate = gets.chomp
+      @strike_coordinate = gets.chomp
     end
+  end
 
+  def fire_upon_cell
+    prompt_user_for_input
 
-    @ai_board.cells[strike_coordinate].fire_upon
+    @ai_board.cells[@strike_coordinate].fire_upon
     @human_board.cells[@ai_fire_order[@turn_number]].fire_upon
-    @ai_board.cells[strike_coordinate].hit_or_miss_or_sunk_human
+    @ai_board.cells[@strike_coordinate].hit_or_miss_or_sunk_human
     @human_board.cells[@ai_fire_order[@turn_number]].hit_or_miss_or_sunk_computer
     @turn_number += 1
   end
