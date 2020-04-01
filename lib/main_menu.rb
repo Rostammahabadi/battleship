@@ -94,6 +94,15 @@ class MainMenu
         @turn.render_board
         @turn.prompt_user_for_input
         @turn.human_strike
+        if @turn.human_lost? == true
+          @game_over = true
+          puts "I Win!"
+        return @turn.render_board
+        elsif @turn.ai_lost? == true
+          @game_over = true
+          puts "You Win!"
+          return @turn.render_board
+        end
         @turn.computer_strike
         if @turn.human_lost? == true
           @game_over = true
