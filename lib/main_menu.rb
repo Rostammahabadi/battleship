@@ -22,6 +22,10 @@ class MainMenu
   def setup_computer
     computer_cruiser = @computer_board.computer_cruiser.shuffle[0]
     computer_submarine = @computer_board.computer_submarine.shuffle[0]
+    while(@verify.verify_no_overlap(computer_cruiser, computer_submarine) == true)
+      computer_cruiser = @computer_board.computer_cruiser.shuffle[0]
+      computer_submarine = @computer_board.computer_submarine.shuffle[0]
+    end
     @computer_board.place(@computer_cruiser_ship, computer_cruiser)
     @computer_board.place(@computer_submarine_ship, computer_submarine)
     @computer_board.cells_containing_ships << computer_cruiser + computer_submarine
