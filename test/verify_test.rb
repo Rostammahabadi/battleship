@@ -41,5 +41,4 @@ class VerifyTest < Minitest::Test
     assert_equal false, @verify.verify_no_repeated_coordinate(cell2)
   end
 
-
 end
