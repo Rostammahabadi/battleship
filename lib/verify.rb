@@ -19,13 +19,21 @@ class Verify
   end#coordinate_input
 
   def cruiser_placement_coordinates(inputted_coordinates)
-    inputted_coordinates.all?{|coord| coordinate_input(coord) == true} && @board.valid_placement?(@cruiser, inputted_coordinates) == true
+    if inputted_coordinates.length == 3
+      inputted_coordinates.all?{|coord| coordinate_input(coord) == true} && @board.valid_placement?(@cruiser, inputted_coordinates) == true
+    else
+      false
+    end
   end
 
   #validate input coordinates for submarine are == 2 and ...
   #they are valid coordinate that can be legally placed on board.
   def submarine_placement_coordinates(inputted_coordinates)
-    inputted_coordinates.all?{|coord| coordinate_input(coord) == true} && @board.valid_placement?(@submarine, inputted_coordinates) == true
+    if inputted_coordinates.length == 2
+      inputted_coordinates.all?{|coord| coordinate_input(coord) == true} && @board.valid_placement?(@submarine, inputted_coordinates) == true
+    else
+      false
+    end
   end
 
   def verify_no_overlap(cruiser_coords, submarine_coords)

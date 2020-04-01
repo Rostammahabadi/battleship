@@ -7,7 +7,6 @@ require 'pry'
 
 class MainMenu
 
-
   def initialize()
     @game_over = false
     @verify = Verify.new
@@ -19,7 +18,7 @@ class MainMenu
     @computer_submarine_ship = Ship.new("Submarine", 2)
   end#initialize
 
-  #setup computer with hardcoded ship coordinates
+  #setup computer with randomized ship coordinates
   def setup_computer
     computer_cruiser = @computer_board.computer_cruiser.shuffle[0]
     computer_submarine = @computer_board.computer_submarine.shuffle[0]
@@ -39,39 +38,29 @@ class MainMenu
     p "Enter the squares for the Cruiser (3 spaces)"
     puts ">"
     cruiser_coords = gets.chomp!
-    cruiser_array = []
-    cruiser_array << cruiser_coords[0..1]
-    cruiser_array << cruiser_coords[3..4]
-    cruiser_array << cruiser_coords[6..7]
+    cruiser_array = cruiser_coords.split
     #while user input coordinates are invalid, get new user input
-      while @verify.cruiser_placement_coordinates(cruiser_array) == false
-        p "Those are invalid coordinates. Please try again: "
-        p ">"
-        cruiser = gets.chomp!
-        cruiser_array = []
-        cruiser_array << cruiser[0..1]
-        cruiser_array << cruiser[3..4]
-        cruiser_array << cruiser[6..7]
-      end
+    while @verify.cruiser_placement_coordinates(cruiser_array) == false
+      p "Those are invalid coordinates. Please try again: "
+      p ">"
+      cruiser_coords = gets.chomp!
+      cruiser_array = cruiser_coords.split
+    end
     @user_board.place(@user_cruiser_ship, cruiser_array)
     @user_board.cells_containing_ships << cruiser_array
 
     #take and store user input coordinates for submarine
     p "Enter the squares for the Submarine (2 spaces)"
     puts ">"
-    submarine = gets.chomp!
-    submarine_array = []
-    submarine_array << submarine[0..1]
-    submarine_array << submarine[3..4]
+    submarine_coords = gets.chomp!
+    submarine_array = submarine_coords.split
 
     #while user input coordinates are invalid, get new user input
     while @verify.submarine_placement_coordinates(submarine_array) == false || @verify.verify_no_overlap(cruiser_array, submarine_array) == true
       p "Those are invalid coordinates. Please try again: "
       p ">"
-      submarine = gets.chomp!
-      submarine_array = []
-      submarine_array << submarine[0..1]
-      submarine_array << submarine[3..4]
+      submarine_coords = gets.chomp!
+      submarine_array = submarine_coords.split
     end
     @user_board.place(@user_submarine_ship, submarine_array)
     @user_board.cells_containing_ships << submarine_array
