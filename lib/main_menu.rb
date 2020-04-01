@@ -99,7 +99,9 @@ class MainMenu
 
       while @game_over == false do
         @turn.render_board
-        @turn.fire_upon_cell
+        @turn.prompt_user_for_input
+        @turn.human_strike
+        @turn.computer_strike
         if @turn.final_turn? == 0
           @game_over = true
           puts "I Win!"
