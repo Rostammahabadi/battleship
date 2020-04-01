@@ -47,18 +47,24 @@ class Turn
   # separated out human_ship_cells within final_turn? to their own methods for clarity
   def human_lost?
     human_ship_cells = @human_board.cells_containing_ships.map {|key| @human_board.cells[key].fired_upon?}
+    if human_ship_cells.all? {|fired_upon_status| fired_upon_status == true} == true
+      return true
+    end
   end
   #separated out ai_ship_cells within final_turn? to their own methods for clarity
   def ai_lost?
     ai_ship_cells = @ai_board.cells_containing_ships.map {|key| @ai_board.cells[key].fired_upon?}
+    if ai_ship_cells.all? {|fired_upon_status| fired_upon_status == true} == true
+      return true
+    end
   end
   # Returns integer to display winner in main_menu.rb
-  def final_turn?
-    human_lost?
-    ai_lost?
-    return 0 if human_lost?.all? {|fired_upon_status| fired_upon_status == true} == true
-    return 1 if ai_lost?.all? {|fired_upon_status| fired_upon_status == true} == true
-
-  end
+  # def final_turn?
+  #   human_lost?
+  #   ai_lost?
+  #   return 0 if human_lost?.all? {|fired_upon_status| fired_upon_status == true} == true
+  #   return 1 if ai_lost?.all? {|fired_upon_status| fired_upon_status == true} == true
+  #
+  # end
 
 end
