@@ -67,7 +67,7 @@ end
     elsif @empty == true && @fired_upon == true
       p "My shot on #{coordinate} was a miss."
     elsif @empty == false && @ship.sunk? == true
-      p "My shot on #{coordinate} sunk my #{@ship.ship_type}."
+      p "My shot on #{coordinate} sunk your #{@ship.ship_type}."
   end
 end
 end
