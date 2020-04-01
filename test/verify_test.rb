@@ -19,4 +19,10 @@ class VerifyTest < Minitest::Test
     assert_equal true, @verify.menu_input("Q")
   end
 
+  def test_coordinate_input
+    assert_equal false, @verify.coordinate_input("A12")
+    assert_equal false, @verify.coordinate_input("A1 A2")
+    assert_equal true, @verify.coordinate_input("A1")
+  end
+
 end
