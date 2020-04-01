@@ -41,4 +41,11 @@ class VerifyTest < Minitest::Test
     assert_equal false, @verify.verify_no_repeated_coordinate(cell2)
   end
 
+  def test_verify_runner_input
+    assert_equal false, @verify.verify_runner_input("7y")
+    assert_equal false, @verify.verify_runner_input("n.")
+    assert_equal true, @verify.verify_runner_input("y")
+    assert_equal true, @verify.verify_runner_input("N")
+  end
+
 end
