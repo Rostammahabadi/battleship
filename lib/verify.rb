@@ -13,6 +13,10 @@ class Verify
     input.upcase == "P" || input.upcase == "Q"
   end#menu_input
 
+  def verify_runner_input(input)
+    input.upcase == "Y" || input.upcase == "N"
+  end
+
   #validate given argument is a valide cell cordinate
   def coordinate_input(coordinate)
     @valid_coordinates.any?{|coord| coord == coordinate}
