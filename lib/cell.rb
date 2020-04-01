@@ -49,11 +49,23 @@ class Cell
     return "X"
   end
 end
-  def hit_or_miss
-    if @empty == false && @fired_upon == true
-      "hit."
+  def hit_or_miss_or_sunk_human
+    if @empty == false && @fired_upon == true && @ship.sunk? == false
+      p "Your shot on #{coordinate} was a hit."
     elsif @empty == true && @fired_upon == true
-      "miss."
+      p "Your shot on #{coordinate} was a miss."
+    elsif @empty == false && @ship.sunk? == true
+      p "Your shot on #{coordinate} sunk my #{@ship.ship_type}."
+    end
+  end
+
+  def hit_or_miss_or_sunk_computer
+    if @empty == false && @fired_upon == true && @ship.sunk? == false
+      p "My shot on #{coordinate} was a hit."
+    elsif @empty == true && @fired_upon == true
+      p "My shot on #{coordinate} was a miss."
+    elsif @empty == false && @ship.sunk? == true
+      p "My shot on #{coordinate} sunk my #{@ship.ship_type}."
   end
 end
 end
