@@ -19,15 +19,4 @@ class VerifyTest < Minitest::Test
     assert_equal true, @verify.menu_input("Q")
   end
 
-  def test_coordinate_input
-    assert_equal false, @verify.coordinate_input("A12")
-    assert_equal false, @verify.coordinate_input("A1 A2")
-    assert_equal true, @verify.coordinate_input("A1")
-  end
-
-  def test_verify_no_overlap
-    assert_equal true, @verify.verify_no_overlap(["A1", "A2", "A3"], ["A1", "B1"])
-    assert_equal false, @verify.verify_no_overlap(["A1", "A2", "A3"], ["B1", "B2"])
-  end
-
 end
