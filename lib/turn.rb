@@ -33,14 +33,15 @@ class Turn
     end
   end
 
-  def fire_upon_cell
-    prompt_user_for_input
-
-    @ai_board.cells[@strike_coordinate].fire_upon
+  def computer_strike
     @human_board.cells[@ai_fire_order[@turn_number]].fire_upon
-    @ai_board.cells[@strike_coordinate].hit_or_miss_or_sunk_human
     @human_board.cells[@ai_fire_order[@turn_number]].hit_or_miss_or_sunk_computer
     @turn_number += 1
+  end
+
+  def human_strike
+    @ai_board.cells[@strike_coordinate].fire_upon
+    @ai_board.cells[@strike_coordinate].hit_or_miss_or_sunk_human
   end
 
   # separated out human_ship_cells within final_turn? to their own methods for clarity
