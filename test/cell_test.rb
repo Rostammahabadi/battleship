@@ -85,7 +85,7 @@ class ShipTest < Minitest::Test
      assert_equal "X", cell4.render
    end
 
-   def test_hit_or_miss
+   def test_hit_or_miss_or_sunk_human
      cell1 = Cell.new("A4")
      cell2 = Cell.new("B4")
      cell3 = Cell.new("C4")
@@ -94,10 +94,28 @@ class ShipTest < Minitest::Test
      cell2.place_ship(cruiser)
      cell3.place_ship(cruiser)
      cell4.place_ship(cruiser)
-     cell2.fire_upon
-     assert_equal "hit.", cell2.hit_or_miss
      cell1.fire_upon
-     assert_equal "miss.", cell1.hit_or_miss
+     assert_equal "Your shot on A4 was a miss.", cell1.hit_or_miss_or_sunk_human
+     cell2.fire_upon
+     assert_equal "Your shot on B4 was a hit.", cell2.hit_or_miss_or_sunk_human
+     cell3.fire_upon
+     cell4.fire_upon
+     assert_equal "Your shot on D4 sunk my Cruiser.", cell4.hit_or_miss_or_sunk_human
+   end
+
+   def test_hit_or_miss_or_sunk_computer
+     cell1 = Cell.new("A4")
+     cell2 = Cell.new("B4")
+     cell3 = Cell.new("C4")
+     submarine = Ship.new("Submarine", 2)
+     cell2.place_ship(submarine)
+     cell3.place_ship(submarine)
+     cell1.fire_upon
+     assert_equal "My shot on A4 was a miss.", cell1.hit_or_miss_or_sunk_computer
+     cell2.fire_upon
+     assert_equal "My shot on B4 was a hit.", cell2.hit_or_miss_or_sunk_computer
+     cell3.fire_upon
+     assert_equal "My shot on C4 sunk your Submarine.", cell3.hit_or_miss_or_sunk_computer
    end
 
 
