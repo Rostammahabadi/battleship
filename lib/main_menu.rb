@@ -41,13 +41,13 @@ class MainMenu
     #take and store user input coordinates for cruiser
     p "Enter the squares for the Cruiser (3 spaces)"
     puts ">"
-    cruiser_coords = gets.chomp!
+    cruiser_coords = gets.chomp.upcase
     cruiser_array = cruiser_coords.split
     #while user input coordinates are invalid, get new user input
     while @verify.cruiser_placement_coordinates(cruiser_array) == false
       p "Those are invalid coordinates. Please try again: "
       p ">"
-      cruiser_coords = gets.chomp!
+      cruiser_coords = gets.chomp.upcase
       cruiser_array = cruiser_coords.split
     end
     @user_board.place(@user_cruiser_ship, cruiser_array)
@@ -56,14 +56,14 @@ class MainMenu
     #take and store user input coordinates for submarine
     p "Enter the squares for the Submarine (2 spaces)"
     puts ">"
-    submarine_coords = gets.chomp!
+    submarine_coords = gets.chomp.upcase
     submarine_array = submarine_coords.split
 
     #while user input coordinates are invalid, get new user input
     while @verify.submarine_placement_coordinates(submarine_array) == false || @verify.verify_no_overlap(cruiser_array, submarine_array) == true
       p "Those are invalid coordinates. Please try again: "
       p ">"
-      submarine_coords = gets.chomp!
+      submarine_coords = gets.chomp.upcase
       submarine_array = submarine_coords.split
     end
     @user_board.place(@user_submarine_ship, submarine_array)
@@ -74,7 +74,7 @@ class MainMenu
   def start_menu
     p "Welcome to BATTLESHIP"
     p "Enter p to play. Enter q to quit."
-    user_input = gets.chomp!
+    user_input = gets.chomp
 
     #while menu intro input is invalid, get new input
     while @verify.menu_input(user_input) == false

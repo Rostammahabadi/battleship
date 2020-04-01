@@ -15,18 +15,18 @@ class Turn
     puts "==============PLAYER BOARD=============="
     puts @human_board.render(true)
     puts "Which coordinate would you like to strike?"
-    strike_coordinate = gets.chomp!
+    strike_coordinate = gets.chomp.upcase
 
     while @verify.coordinate_input(strike_coordinate) == false
       puts "invalid input"
       puts "Which coordinate would you like to strike?"
-      strike_coordinate = gets.chomp
+      strike_coordinate = gets.chomp.upcase
     end
     # verify the user hasn't entered that cell previously
     while @verify.verify_no_repeated_coordinate(@ai_board.cells[strike_coordinate]) == false
       puts "You already struck that cell"
       puts "Choose another coordinate"
-      strike_coordinate = gets.chomp
+      strike_coordinate = gets.chomp.upcase
     end
 
 
