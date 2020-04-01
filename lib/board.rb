@@ -41,11 +41,7 @@ class Board
 
   #check passed coordinate (key) exists in @cells (hash)
   def valid_coordinate?(coordinate)
-    if @cells[coordinate] == nil
-      false
-    else
-      true
-    end
+    @cells[coordinate] == nil
   end
 
   #checks the following:
