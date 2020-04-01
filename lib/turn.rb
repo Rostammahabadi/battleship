@@ -32,8 +32,8 @@ class Turn
 
     @ai_board.cells[strike_coordinate].fire_upon
     @human_board.cells[@ai_fire_order[@turn_number]].fire_upon
-    p "Your shot on #{strike_coordinate} was a #{@ai_board.cells[strike_coordinate].hit_or_miss}"
-    p "My shot on #{@ai_fire_order[@turn_number]} was a #{@human_board.cells[@ai_fire_order[@turn_number]].hit_or_miss}"
+    @ai_board.cells[strike_coordinate].hit_or_miss_or_sunk_human
+    @human_board.cells[@ai_fire_order[@turn_number]].hit_or_miss_or_sunk_computer
     @turn_number += 1
   end
 
