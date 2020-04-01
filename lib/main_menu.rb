@@ -98,6 +98,7 @@ class MainMenu
       @turn = Turn.new(@user_board, @computer_board)
 
       while @game_over == false do
+        @turn.render_board
         @turn.game_turn
         if @turn.final_turn? == 0
           @game_over = true
