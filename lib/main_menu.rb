@@ -99,13 +99,15 @@ class MainMenu
 
       while @game_over == false do
         @turn.render_board
-        @turn.game_turn
+        @turn.fire_upon_cell
         if @turn.final_turn? == 0
           @game_over = true
           puts "I Win!"
+          @turn.render_board
         elsif @turn.final_turn? == 1
           @game_over = true
           puts "You Win!"
+          @turn.render_board
         end
       end
     else
