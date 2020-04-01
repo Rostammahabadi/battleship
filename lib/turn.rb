@@ -1,5 +1,6 @@
 class Turn
 
+  attr_reader :render_board
 
   def initialize(human_board, ai_board)
     @turn_number = 0
@@ -9,11 +10,14 @@ class Turn
     @ai_fire_order = @ai_board.cells.map {|cell| cell[0]}.shuffle
   end
 
-  def game_turn
+  def render_board
     puts "=============COMPUTER BOARD============="
     puts @ai_board.render(false)
     puts "==============PLAYER BOARD=============="
     puts @human_board.render(true)
+  end
+
+  def game_turn
     puts "Which coordinate would you like to strike?"
     strike_coordinate = gets.chomp!
 
