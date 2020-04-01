@@ -107,11 +107,11 @@ class MainMenu
         if @turn.human_lost? == true
           @game_over = true
           puts "I Win!"
-          @turn.render_board
+          return @turn.render_board
         elsif @turn.ai_lost? == true
           @game_over = true
           puts "You Win!"
-          @turn.render_board
+          return @turn.render_board
         end
       end
     else
