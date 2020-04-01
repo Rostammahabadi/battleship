@@ -95,11 +95,11 @@ class MainMenu
         @turn.prompt_user_for_input
         @turn.human_strike
         @turn.computer_strike
-        if @turn.final_turn? == 0
+        if @turn.human_lost? == true
           @game_over = true
           puts "I Win!"
           @turn.render_board
-        elsif @turn.final_turn? == 1
+        elsif @turn.ai_lost? == true
           @game_over = true
           puts "You Win!"
           @turn.render_board
