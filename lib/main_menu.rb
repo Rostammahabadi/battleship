@@ -91,13 +91,27 @@ class MainMenu
       @turn = Turn.new(@user_board, @computer_board)
 
       while @game_over == false do
-        @turn.game_turn
-        if @turn.final_turn? == 0
+        @turn.render_board
+        @turn.prompt_user_for_input
+        @turn.human_strike
+        if @turn.human_lost? == true
           @game_over = true
           puts "I Win!"
-        elsif @turn.final_turn? == 1
+        return @turn.render_board
+        elsif @turn.ai_lost? == true
           @game_over = true
           puts "You Win!"
+          return @turn.render_board
+        end
+        @turn.computer_strike
+        if @turn.human_lost? == true
+          @game_over = true
+          puts "I Win!"
+          return @turn.render_board
+        elsif @turn.ai_lost? == true
+          @game_over = true
+          puts "You Win!"
+          return @turn.render_board
         end
       end
     else
