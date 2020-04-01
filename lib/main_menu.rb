@@ -21,9 +21,11 @@ class MainMenu
 
   #setup computer with hardcoded ship coordinates
   def setup_computer
-    @computer_board.place(@computer_cruiser_ship, @computer_board.computer_cruiser.shuffle[0])
-    @computer_board.place(@computer_submarine_ship, @computer_board.computer_submarine.shuffle[0])
-    @computer_board.cells_containing_ships << ["A1","A2","A3","C1","C2"]
+    computer_cruiser = @computer_board.computer_cruiser.shuffle[0]
+    computer_submarine = @computer_board.computer_submarine.shuffle[0]
+    @computer_board.place(@computer_cruiser_ship, computer_cruiser)
+    @computer_board.place(@computer_submarine_ship, computer_submarine)
+    @computer_board.cells_containing_ships << computer_cruiser + computer_submarine
     @computer_board.cells_containing_ships = @computer_board.cells_containing_ships.flatten
   end#setup_computer
 
