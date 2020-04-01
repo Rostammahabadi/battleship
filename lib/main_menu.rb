@@ -114,8 +114,6 @@ class MainMenu
           return @turn.render_board
         end
       end
-    else
-      p  "USER PRESSED Q"
     end
   end#start_menu
 end#main_menu
