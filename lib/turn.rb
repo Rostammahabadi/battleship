@@ -58,13 +58,4 @@ class Turn
       return true
     end
   end
-  # Returns integer to display winner in main_menu.rb
-  # def final_turn?
-  #   human_lost?
-  #   ai_lost?
-  #   return 0 if human_lost?.all? {|fired_upon_status| fired_upon_status == true} == true
-  #   return 1 if ai_lost?.all? {|fired_upon_status| fired_upon_status == true} == true
-  #
-  # end
-
 end
